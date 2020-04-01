@@ -53,8 +53,7 @@ class channels {
 
         foreach ($groups as $group) {
             if ($this->_group_requires_rocketchat_channel($group)) {
-                $channelname = $course->shortname . "-" . str_replace(" ", "_", $group->name);
-                $this->_create($channelname);
+                $this->_create($this->_get_channel_name($course,$group));
             }
         }
     }
@@ -66,12 +65,19 @@ class channels {
      */
     public function has_channel_for_group($group) {
         global $DB;
-
         $course = $DB->get_record('course', array("id" => $group->courseid));
-        $channelname = $course->shortname . "-" . str_replace(" ", "_", $group->name);
-        $rocketchatchannel = $this->has_private_group($channelname);
+        return $this->has_private_group($this->_get_channel_name($course,$group));
+    }
 
-        return $rocketchatchannel;
+    /**
+     * @param $course the course the group is a part of
+     * @param $group the group to get a channel name from
+     * @return string the channel's name
+     * @throws \dml_exception
+     */
+    private function _get_channel_name($course,$group) {
+        return preg_replace( '/[^\w\-]/' , '_' ,
+                $course->shortname . " - " . $group->name );
     }
 
     /**
