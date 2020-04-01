@@ -146,7 +146,7 @@ class channels {
      * @throws \dml_exception
      */
     private function _create_channel($channel) {
-        $api = '/api/v1/channels.create';
+        $api = '/api/v1/groups.create';
         $data = array(
             "name" => $channel
         );
@@ -162,22 +162,6 @@ class channels {
             $object->error = $response->error;
 
             array_push($this->errors, $object);
-        } else {
-            $api = '/api/v1/channels.setType';
-            $data = array(
-                    "roomId" => $response->channel->_id,
-                    "type" => 'p'
-            );
-
-            $response = \local_rocketchat\utilities::make_request($this->client->url, $api, 'post', $data, $header);
-
-            if (!$response->success) {
-                $object = new \stdClass();
-                $object->code = get_string('channel_creation', 'local_rocketchat');
-                $object->error = $response->error;
-
-                array_push($this->errors, $object);
-            }
         }
     }
 
