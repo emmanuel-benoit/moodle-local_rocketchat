@@ -34,10 +34,12 @@ class client {
     public $authenticated = false;
     public $host;
     public $port;
+    public $httpOnly;
     public $url;
 
-    private $authtoken;
-    private $userid;
+    private $useToken;
+    private $authToken;
+    private $userId;
     private $username;
     private $password;
     private $api;
@@ -50,17 +52,28 @@ class client {
     public function __construct() {
         $this->host = get_config('local_rocketchat', 'host');
         $this->port = get_config('local_rocketchat', 'port');
+        $this->httpOnly = get_config('local_rocketchat', 'protocol');
+        $this->useToken = get_config('local_rocketchat', 'usetoken');
         $this->username = get_config('local_rocketchat', 'username');
         $this->password = get_config('local_rocketchat', 'password');
 
-        $this->url = $this->host . ':' . $this->port;
+        $this->url = 'http' . ( $this->httpOnly ? '' : 's' ) . '://'
+            . $this->host . ':' . $this->port;
         $this->api = '';
 
-        $this->authenticate();
+        if ($this->useToken) {
+            $this->userId = $this->username;
+            $this->authToken = $this->password;
+            $this->authenticated = true;
+        } else {
+            $this->authenticate();
+        }
     }
 
     public function authentication_headers() {
-        return array("X-Auth-Token: " . $this->authtoken, "X-User-Id: " . $this->userid);
+        return array(
+            "X-Auth-Token: " . $this->authToken,
+            "X-User-Id: " . $this->userId);
     }
 
     /**
@@ -93,8 +106,8 @@ class client {
 
     private function store_credentials($data) {
         if (isset($data->authToken) && isset($data->userId)) {
-            $this->authtoken = $data->authToken;
-            $this->userid = $data->userId;
+            $this->authToken = $data->authToken;
+            $this->userId = $data->userId;
         }
     }
 }

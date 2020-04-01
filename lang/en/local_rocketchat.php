@@ -50,10 +50,12 @@ $string['port'] = 'Port';
 $string['port_desc'] = 'Please specify the port if it\'s not the default (3000).';
 $string['protocol'] = 'Protocol';
 $string['protocol_desc'] = 'Please specify the HTTP protocol if it\'s not the default (https).';
+$string['usetoken'] = 'Token-based authentication';
+$string['usetoken_desc'] = 'Authenticate using an user ID / token pair instead of an username and password.';
 $string['username'] = 'Username';
-$string['username_desc'] = 'Username for accessing the API. Please create a Rocket.Chat Moodle user for this purpose.';
+$string['username_desc'] = 'Username or user ID for accessing the API. Please create a Rocket.Chat Moodle user for this purpose.';
 $string['password'] = 'Password';
-$string['password_desc'] = 'Specified password for the given user.';
+$string['password_desc'] = 'Password for the given user, or token if token-based authentication is enabled.';
 $string['groupregex'] = 'Group Regex Filters';
 $string['groupregex_desc'] = 'Used for matching which groups should be sync to Rocket.Chat:<ul><li>/all/</li><li>/coach group [a-z][0-9]/</li><li>/example project group [0-9][0-9]/</li></ul>';
 

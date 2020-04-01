@@ -44,6 +44,10 @@ $settingspage->add(new admin_setting_configselect('local_rocketchat/protocol',
         get_string('protocol', 'local_rocketchat'),
         get_string('protocol_desc', 'local_rocketchat'),
         '0', [0 => 'https', 1 => 'http']));
+$settingspage->add(new admin_setting_configcheckbox('local_rocketchat/usetoken',
+        get_string('usetoken' , 'local_rocketchat'),
+        get_string('usetoken_desc' , 'local_rocketchat'),
+        0));
 $settingspage->add(new admin_setting_configtext('local_rocketchat/username',
         get_string('username' , 'local_rocketchat'),
         get_string('username_desc' , 'local_rocketchat'),
