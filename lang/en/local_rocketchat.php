@@ -58,6 +58,8 @@ $string['password'] = 'Password';
 $string['password_desc'] = 'Password for the given user, or token if token-based authentication is enabled.';
 $string['groupregex'] = 'Group Regex Filters';
 $string['groupregex_desc'] = 'Used for matching which groups should be sync to Rocket.Chat:<ul><li>/all/</li><li>/coach group [a-z][0-9]/</li><li>/example project group [0-9][0-9]/</li></ul>';
+$string['syncusers'] = 'Synchronize users';
+$string['syncusers_desc'] = 'Attempt to create Rocket.Chat users from Moodle. Users need to be synchronized externally unless this is checked.';
 
 // Course integration.
 $string['heading_course'] = 'Course Integration';

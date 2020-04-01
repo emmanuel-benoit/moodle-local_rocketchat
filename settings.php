@@ -62,6 +62,10 @@ $settingspage->add(new admin_setting_configtextarea('local_rocketchat/groupregex
         get_string('groupregex' , 'local_rocketchat'),
         get_string('groupregex_desc' , 'local_rocketchat'),
         '/all/'));
+$settingspage->add(new admin_setting_configcheckbox('local_rocketchat/syncusers',
+        get_string('syncusers' , 'local_rocketchat'),
+        get_string('syncusers_desc' , 'local_rocketchat'),
+        0));
 
 $ADMIN->add('local_rocketchat', $settingspage);
 

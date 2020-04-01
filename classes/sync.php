@@ -111,9 +111,11 @@ class sync {
             $channelapi->create_channels_for_course($rocketchatcourse);
             $this->errors = array_merge($this->errors, $channelapi->errors);
 
-            $userapi = new integration\users($this->client);
-            $userapi->create_users_for_course($rocketchatcourse);
-            $this->errors = array_merge($this->errors, $userapi->errors);
+            if (get_config('local_rocketchat', 'syncusers')) {
+                $userapi = new integration\users($this->client);
+                $userapi->create_users_for_course($rocketchatcourse);
+                $this->errors = array_merge($this->errors, $userapi->errors);
+            }
 
             $subscriptionapi = new integration\subscriptions($this->client);
             $subscriptionapi->add_subscriptions_for_course($course);
