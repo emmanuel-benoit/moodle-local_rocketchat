@@ -232,7 +232,8 @@ class local_rocketchat_external extends external_api {
         $sync = new local_rocketchat\sync;
         $sync->sync_pending_course($courseid);
 
-        return new external_value(PARAM_TEXT, get_string('coursetriggeryncresult', 'local_rocketchat', $params));
+        //return new external_value(PARAM_TEXT, get_string('coursetriggeryncresult', 'local_rocketchat', $params));
+        return ''; // FIXME, should probably return something vaguely meaningful
     }
 
     /**

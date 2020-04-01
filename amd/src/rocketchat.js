@@ -48,7 +48,7 @@ define(['core/ajax', 'local_rocketchat/rocketchat'], function(ajax) {
         }
         ]);
 
-        location.reload();
+//        location.reload();
     };
 
     module.init = function() {
