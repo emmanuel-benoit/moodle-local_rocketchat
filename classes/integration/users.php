@@ -160,9 +160,11 @@ class users
         $user = $DB->get_record('user', array("id" => $userid));
         $username = $user->username;
 
+	/* FIXME: this should be an option somewhere
         if (count(explode('@', $user->email)) > 1) {
             $username = explode('@', $user->email)[0];
         }
+	*/
 
         $api = '/api/v1/users.info?username=' . $username;
 
